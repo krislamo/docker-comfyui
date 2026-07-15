@@ -1,0 +1,18 @@
+services:
+  comfyui:
+    build:
+      context: .
+    image: localhost/comfyui:latest
+    restart: unless-stopped
+    container_name: comfyui
+    ports:
+      - "${ENDPOINT:?}:8188"
+    volumes:
+      - ./data/models:/app/models
+      - ./data/input:/app/input
+      - ./data/output:/app/output
+      - ./data/user:/app/user
+      - ./data/custom_nodes:/app/custom_nodes
+      - ./data/triton-cache:/root/.triton
+    devices:
+      - nvidia.com/gpu=all

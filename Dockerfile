@@ -1,0 +1,11 @@
+FROM docker.io/pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
+ARG COMFYUI_VERSION=v0.27.1
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential git \
+    && rm -rf /var/lib/apt/lists/*
+RUN git clone --depth 1 --branch ${COMFYUI_VERSION} \
+    https://github.com/comfyanonymous/ComfyUI /app
+WORKDIR /app
+RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 8188
+CMD ["python", "main.py", "--listen", "0.0.0.0"]
