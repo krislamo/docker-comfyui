@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential git \
     && rm -rf /var/lib/apt/lists/*
 RUN git clone --depth 1 --branch ${COMFYUI_VERSION} \
-    https://github.com/comfyanonymous/ComfyUI /app
+    https://github.com/Comfy-Org/ComfyUI /app
 WORKDIR /app
 RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8188
