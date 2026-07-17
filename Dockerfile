@@ -7,5 +7,6 @@ RUN git clone --depth 1 --branch ${COMFYUI_VERSION} \
     https://github.com/Comfy-Org/ComfyUI /app
 WORKDIR /app
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r manager_requirements.txt
 EXPOSE 8188
-CMD ["python", "main.py", "--listen", "0.0.0.0"]
+CMD ["python", "main.py", "--listen", "0.0.0.0", "--enable-manager"]
