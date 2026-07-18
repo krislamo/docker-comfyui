@@ -1,12 +1,12 @@
 FROM docker.io/pytorch/pytorch:2.12.1-cuda13.0-cudnn9-runtime
-ARG COMFYUI_VERSION=v0.28.0
-ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential git libgl1 libx11-6 tini \
     && rm -rf /var/lib/apt/lists/*
+ARG COMFYUI_VERSION=v0.28.0
 RUN git clone --depth 1 --branch ${COMFYUI_VERSION} \
     https://github.com/Comfy-Org/ComfyUI /app
 WORKDIR /app
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir -r manager_requirements.txt
 EXPOSE 8188
