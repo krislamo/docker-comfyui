@@ -2,9 +2,9 @@ services:
   comfyui:
     build:
       context: .
-    image: localhost/comfyui:latest
-    restart: unless-stopped
-    container_name: comfyui
+    image: ${IMAGE:-localhost/comfyui}:${VERSION:-latest}
+    container_name: ${NAME:-comfyui}
+    restart: ${RESTART:-unless-stopped}
     ports:
       - "${ENDPOINT:-127.0.0.1:8188}:8188"
     volumes:
@@ -15,4 +15,4 @@ services:
       - ${DATA:-./data}/custom_nodes:/app/custom_nodes
       - ${DATA:-./data}/triton-cache:/root/.triton
     devices:
-      - nvidia.com/gpu=all
+      - ${GPU:-nvidia.com/gpu=all}
