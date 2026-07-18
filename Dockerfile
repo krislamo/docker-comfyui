@@ -1,5 +1,6 @@
-FROM docker.io/pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
+FROM docker.io/pytorch/pytorch:2.12.1-cuda13.0-cudnn9-runtime
 ARG COMFYUI_VERSION=v0.28.0
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential git tini \
     && rm -rf /var/lib/apt/lists/*
